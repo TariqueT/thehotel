@@ -1,0 +1,1045 @@
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+/* 10/16=0.625 * 100 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* End of common styles */
+/* navbar */
+/* sidebar */
+.sidebar {
+    width: 8rem;
+    height: 100%;
+    background-color: #eee;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+/* z-index: 10; will put the .sidebar infront of the navigation bar to hide it and to show upon clickevent*/
+    z-index: 10;
+}
+
+/* Menu that will drop down start off as black box */
+.menu-icon {
+    /* width: 2rem;
+    height: 2rem;
+    background-color: #222; */
+    margin-top: 3rem;
+    cursor: pointer;
+}
+
+/*  */
+.line {
+    height: .2rem;
+    width: 2.5rem;
+    background-color: #222;
+    margin-bottom: .6rem;
+}
+
+/* different line lengths in menu-icon so when the mouse hovers it will even out all 3 lines */
+.line-1, .line-3 {
+    width: 1.8rem;
+    /* Change from transition: width .3s; to transition: all .4s; for the line-1 rotation effect  */
+    transition: all .4s;
+}
+
+.menu-icon:hover .line {
+    width:  2.5rem;
+}
+
+/* remove social icon list bullet points and make space on the right even to that of the left */
+.social-icon-list {
+    list-style: none;
+    padding: 0;
+    height: 25rem;
+/* display: flex; makes the icons horizontal so you make them veritcal by using flex-direction: column; and make the content have even spaces by using space-evenly */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* align-items: center; */
+    vertical-align: bottom;
+}
+
+/* social-link make the links font larger and change the color to grey */
+.social-link {
+    font-size: 2rem;
+    color: #777;
+/* Changes the color for .3s to orange when mouse hovers */
+    transition: color .3s;
+}
+
+/* social-link change orientation when mouse hovers over them */
+.social-link:hover {
+    color: #deaa86;
+}
+
+/* year */
+.year {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #555;
+}
+/* end of sidebar */
+
+/* navigation */
+/* navigation- position: fixed; removes the space between the sidebar and top of the page*/
+/* Place the navigation bar behind the sidebar .navigation width 40rem - 8rem .sidebar width = left: -32rem; */
+.navigation {
+    /* Deleted original margin-left: 8rem; that placed the navigation on the left side, to have the navigation hiding behind the sidebar and to appear upon click event */
+    left: -32rem;
+    position: fixed;
+    width: 40rem;
+    height: 100%;
+    background: linear-gradient(to top, rgba(85, 82, 69, 0.6), rgba(85, 82, 43, 0.5)) ,url(../img/navigation-bg-2.jpg) center no-repeat;
+    background-size: cover;
+    /* took last four from .sidebar*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* Transition: left .8s cubic-bezier(1, 0, 0, 1); to slowdown transition to slide out at .8s */
+    transition: left .8s cubic-bezier(1, 0, 0, 1);
+    /* index should be greater than it's original of 0 and less than index 10 from the .side bar  */
+    z-index: 5;
+}
+
+.navigation-heading {
+    font-family: 'josefin sans', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    letter-spacing: .2rem;
+    color: #b85d1c;
+    text-align: center;
+}
+
+.navigation-search {
+    position: relative;
+}
+.navigation-search-input {
+    width: 30rem;
+    padding: 1rem 2rem;
+    background-color: rgba(213, 150, 66, 0.5);
+    text-align-last: center;
+    font-family: 'josefin sans', sans-serif;
+    font-size: 1.6rem;
+    color: #D59642;
+    letter-spacing: .1rem;
+    outline: none;
+    border: 1rem solid #555;
+    border-radius: 10rem;
+}
+/* changes the placeholder="search" to a different color */
+::placeholder {
+    color: black;
+}
+
+/* input box background color changes when you start to */
+.navigation-search-input:focus {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+/* navigation search button color */
+.navigation-search-btn {
+    border: none;
+    background-color: transparent;
+    color:  #D59642;
+    font-size: 1.8rem;
+    position: absolute;
+    top: 1.8rem;
+    right: 2.2rem;
+    cursor: pointer;
+}
+
+/* takes away the border when the search botton is clicked */
+.navigation-search-btn:focus {
+    outline: none;
+}
+
+/* list element */
+.navigation-list {
+    list-style: none;
+    padding: 0;
+    height: 28rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* list item link */
+.navigation-link {
+    color: rgb(252, 252, 252);
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color .5s;
+}
+
+/*align naviation item by <li> alignment  */
+.navigation-item {
+    position: relative;
+}
+
+
+/* the pseudo code ::before, used to create a dash line before each link item */
+.navigation-link::before {
+    content: "";
+/* changes from 3rem to show dashes on left side of link to 0rem to keep them hidden until hover with mouse */
+    width: 0rem;
+    height: .1rem;
+    background-color: #deaa86;
+    position: absolute;
+    top: 1rem;
+    left: -4rem;
+    transition: width .5s cubic-bezier(1 ,0 ,0, 1);
+}
+
+/* the pseudo code ::after, used to create a dash line after each link item */
+.navigation-link::after {
+    content: "";
+/* changes from 3rem to show dashes on left side of link to 0rem to keep them hidden until hover with mouse */
+    width: 0rem;
+    height: .1rem;
+    background-color: #deaa86;
+    position: absolute;
+    top: 1rem;
+    right: -4rem;
+    transition: width .5s cubic-bezier(1 ,0 ,0, 1);
+}
+
+/* navigation-link hover when mouse over it */
+.navigation-link:hover {
+    color: #deaa86;
+}
+
+/* When mouse hovers over nav links the change color and the lines on both sides of each link item expands for 3rem  */
+.navigation-link:hover::before,
+.navigation-link:hover::after {
+    width: 3rem;
+}
+
+/* Make copywrite paragraph visible by using white, a bigger font size and moving it up 1.5re, frm the bottom  */
+.copyright {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.checkbox:checked ~ .navigation {
+    left: 8rem;
+}
+
+/* Line item 1 will complete 1 entire turn + rotate by 45deg, and translate(-5px, 6px); */
+.checkbox:checked ~ .sidebar .line-1 {
+    transform: rotate(-405deg) translate(-5px, 6px);
+ /* add width: 2.5rem; so upon click event when the X is formed it maintains it's size and doesn't shrink */ 
+    width: 2.5rem;
+}
+/* line item 2 will hide when the menu icon is clicked */
+.checkbox:checked ~ .sidebar .line-2 {
+    opacity: 0;
+}
+/* Line item 3 will complete 1 entire turn + rotate by 45deg and translate(-5px, -6px); */
+.checkbox:checked ~ .sidebar .line-3 {
+    transform: rotate(405deg) translate(-5px, -6px);
+ /* add width: 2.5rem; so upon click event when the X is formed it maintains it's size and doesn't shrink */ 
+     width: 2.5rem;
+}
+/* end of navigation */
+/* end of navbar */
+
+/* header */
+/* header is hidden behind sidebar because of it's fixed property. Use margin-left: 8rem; to move the header 8rem from the left */
+.header {
+    margin-left: 8rem;
+    height: 100vh;
+/* Background image is embedded here. */
+    background: linear-gradient(to top, rgba(85, 82, 69, 0.6), rgba(85, 82, 43, 0.5)), url(../img/header-1.jpg) center no-repeat;
+    background-size: cover;
+}
+
+img {
+    vertical-align: bottom;
+}
+
+/* Use flex to place brand name next to the logo and when the mouse hovers it turns in to a pointer */
+.brand {
+    display: flex;
+    cursor: pointer;
+}
+
+.hotel-heading {
+    font-family: '.josefin stans', sans-serif;
+    font-size: 2.7rem;
+    font-weight: 400;
+    color: #deaa86;
+    letter-spacing: .2rem;
+
+}
+
+/* banner styling */
+.banner {
+    color: #ddd;
+    height: 65rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* .banner-heading styling */
+.banner-heading {
+    font-family: 'josefin sans', sans-serif;
+    font-size: 7rem;
+    font-weight: 400;
+ /* gets rid of the large space between the heading and paragraph */
+    margin-bottom: 0;
+/* animation for heading, it appears when the screen loads or is re-loaded */
+    animation: anim 2s;
+}
+
+/* banner-paragraph styling*/
+.banner-paragraph {
+    font-size: 3.5rem;
+    font-weight: 300;
+/* animation for paragraph, it appears when the screen loads or is re-loaded, but the .5s delays the display by 5 second, backwards hides the paragraph till it is displayed*/
+    animation: anim 1.5s .5s backwards;
+}
+
+/* banner-btn styling */
+.banner-btn {
+    width: 21rem;
+    padding: 1.2rem 2rem;
+    font-size: 2rem;
+    color: #333;
+    letter-spacing: .1rem;
+/* takes away border that appears after button is clicked */
+    border: none;
+/* makes buttom into an oval instead of a square */
+    border-radius: 10rem;
+/* takes away the outline of the button */
+    outline: none;
+    background: linear-gradient(to right, gold, goldenrod);
+    cursor: pointer;
+/* animation for btn, it appears when the screen loads or is re-loaded, but the .1s delays the display by 1 second, backwards hides the btn till it is displayed*/
+    animation: anim 1s .1s backwards;
+}
+
+/* change the color of the btn when the mouse hovers over it */
+.banner-btn:hover {
+    background: linear-gradient(to left, gold, goldenrod);
+}
+
+/* when click on button the state of it becomes active */
+.banner-btn:active {
+    transform: translateY(.2rem);
+}
+
+/* animation */
+@keyframes anim {
+    0% {
+        opacity: 0;
+    } 
+    100% {
+        opacity: 1;
+    }
+}
+/* end of header */
+
+/* about us */
+.about-us {
+    margin-left: 8rem;
+    display: flex;
+    background-color: #ddd;
+}
+
+/* about-us-content, heading, paragraph & read more button  */
+/* flex is used to center the .small-underline and .big-underline */
+.about-us-content {
+    flex: 0 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10rem;
+    box-sizing: border-box;
+}
+
+/* about-us-heading */
+.about-us-heading {
+    font-family: 'josefin sans', sans-serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: #555;
+}
+
+/*small-underline styling  */
+.small-underline {
+    width: 9rem;
+    height: .1rem;
+    margin: 0 auto 1rem auto;
+    background-color: #b85d1e;
+}
+
+/*big-underline styling  */
+.big-underline {
+    width: 20rem;
+    height: .1rem;
+    background-color: #b85d1e;
+}
+
+/* sub-heading styling */
+.sub-heading {
+    font-size:  3.5rem;
+    font-weight: 300;
+    letter-spacing: .2rem;
+    color: #b85d1c;
+}
+
+/* text styling */
+.about-us-paragraph {
+    font-size: 1.6rem;
+    font-style: italic;
+/* makes font lighter */
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+/* about-us-btn */
+.about-us-btn {
+    width: 15rem;
+    padding: .7rem .5rem;
+    font-family: 'montserrat', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #b85d1c;
+    background-color: transparent;
+    border: .1rem solid #b85d1c;
+    outline: none;
+    cursor: pointer;
+}
+
+/* btn-arrow */
+.btn-arrow {
+    margin-left: .5rem;
+    transition: margin-left .4s;
+}
+
+/* .about-us-btn:hover  */ 
+.about-us-btn:hover .btn-arrow {
+    margin-left: 1.5rem;
+}
+/*aboutus-images styling */
+.about-us-images {
+    flex: 1 1; 
+    position: relative;
+}
+
+/* images */
+.image {
+    width: 32rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+/* gives a shadow border for each about-us-image */
+    box-shadow: 0 3rem 6rem rgba(0, 0, 0, .4);
+    border-radius: .4rem;
+    border: .2rem solid #b85d1c;
+}
+
+/* image-1 */
+.image-1 {
+    transform: translate(-20%, -90%);
+}
+
+/* image-2 */
+.image-2 {
+    transform: translate(-70%, -70%);
+}
+/* iamge-3 */
+.image-3 {
+    transform: translate(-50%, -50%);
+}
+
+/* iamge-4 */
+.image-4 {
+    transform: translate(-30%, -30%);
+}
+/* end of about us */
+
+
+/* common header */
+.common-header {
+    padding: 5rem;
+    text-align: center;
+    color: #b85d1c;
+}
+
+/* common heading */
+.common-heading {
+    font-size: 4rem;
+    font-weight: 300;
+    letter-spacing: .2rem;
+}
+
+
+/*small-underline styling  */
+.small-underline {
+    width: 9rem;
+    height: .1rem;
+    margin: 0 auto 1rem auto;
+    background-color: #b85d1e;
+}
+
+/*big-underline styling  */
+/* margin is used to center the .big-underline */
+.big-underline {
+    width: 20rem;
+    height: .1rem;
+    margin: auto;
+    background-color: #b85d1e;
+}
+/* end of common header */
+
+/* rooms */
+.rooms {
+    margin-left: 8rem;
+
+}
+
+/* .rooms-cards-wrapper */
+/* display: flex; puts each card side by side and flex-wrap: wrap; wraps each card  */
+.rooms-cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/* .room-card */
+.room-card {
+    width: 60rem;
+    margin: 5rem;
+    background-color: #15141b;
+    box-shadow: 0 3rem 6rem rgba(0, 0, 0, .3);
+}
+
+/* resizes all iamges to be equal in height and width bc width: inherits the 60rem; from it's parent element  */
+.room-img {
+    width: 100%;
+}
+
+/* room-card-content */
+.room-card-content {
+    color: #ddd;
+    padding: 2rem;
+}
+
+/* room-card-heading */
+.room-card-heading {
+   margin: 0; 
+   font-size: 3rem;
+   font-weight: 300;
+}
+
+/* room-card-pargraph */
+.room-card-paragraph {
+    font-size: 1.5rem;
+    color: #777;
+}
+
+/* room-price  */
+.room-price {
+    font-size: 5rem;
+    font-weight: 300;
+    text-align: right;
+/* decreases spacing between price and book now button*/
+    margin: 0;
+}
+
+/* room-card-btn */
+.room-card-btn {
+    width: 15rem;
+    padding: .1.5rem 1rem;
+    font-family: 'montserrat', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #b85d1c;
+    background-color: transparent;
+    border: .1rem solid #b85d1c;
+    border-radius: 10rem;
+    outline: none;
+    cursor: pointer;
+}
+
+/* rooms-btn=wrapper */
+.rooms-btn-wrapper {
+    text-align: center;
+}
+
+/* rooms-btn */
+.rooms-btn {
+    width: 20rem;
+    padding: 1.5rem 1rem;
+    margin: 4rem 0;
+    background-color: transparent;
+    text-transform: uppercase;
+/* change text color */
+    color: #b85d1c;
+    border: .2rem solid #b85d1c;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 1.5rem 6rem rgba(0, 0, 0, 1);
+/* transition color when hover */
+    transition: all .2s;
+}
+
+/* rooms-btn:hover */
+.rooms-btn:hover {
+    color: #ddd;
+    background-color: #b85d1c;
+}
+/* end of rooms */
+
+/* customers */
+.customers {
+    margin-left: 8rem;
+    padding-bottom: 7rem;
+    background-color: #15141b;
+}
+
+/* customers-paragraph */
+.customers-paragraph {
+    font-size: 1.8rem;
+    color: #ddd;
+    width: 50%;
+    margin: 2rem auto 8rem auto;
+    text-align: center;
+
+}
+
+/* customers-card-wrapper */
+/* place cards side by side */
+.customers-card-wrapper {
+    display: flex;
+    /* space out content */
+    justify-content: space-evenly;
+}
+
+/* customer-card */
+.customer-card {
+    background-color: #eee;
+    width: 50rem;
+/* image and content will be placed side by side */
+    display: flex;
+}
+
+/* customer-image-wrapper */
+/* centers picture vertically in card */
+.customer-image-wrapper {
+    margin: auto 0;
+}
+
+/* customer-image */
+/* height: and width:  both needed to get image insde the card */
+.customer-image {
+    height: 19rem;
+    width: 17rem;
+    /* margin-left: -2.3rem; */
+/*create space between customer image and text by using float: left; to float the image left and padding-right: 1rem; to align text with space to the right of the image */
+    float: left;
+    padding-right: 1rem;
+}
+
+/* customer-info */
+.customer-info {
+    padding: 0.2rem;
+}
+
+/* customer-fullname */
+.customer-fullname {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+/* .customer-paragraph-1 */
+.customer-paragraph-1 {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #b85d1c;
+}
+
+/* .customer-paragraph-2 */
+.customer-paragraph-2 {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #b85d1c;
+}
+/* end of  customers */
+
+/* footer */
+.footer {
+    margin-left: 8rem;
+}
+
+.main-part {
+display: flex;
+/* create space between the elements */
+justify-content: space-between;
+background-color: #1c1c1c;
+padding: 4rem;
+}
+
+/* footer heading */
+.footer-heading {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: goldenrod;
+    margin: 1rem 0 3rem 0;
+}
+
+/* .footer-list */
+.footer-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* footer-list-item */
+.footer-list-item {
+    margin-bottom: 2rem;
+
+}
+
+/* footer-list-link */
+.footer-list-link {
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: #bbb;
+}
+
+/* .contact p */
+.contact p {
+    font-size: 1.5rem;
+    color: #bbb;
+    margin-bottom: 4rem;
+}
+
+/* footer-form */
+.footer-form {
+    display: flex;
+}
+
+/* footer-input */
+.footer-input {
+    width: 25rem;
+    padding: 1rem;
+    font-family: 'josefin sans', sans-serif;
+    font-size: 1.8rem;
+    color: #444;
+    outline: none;
+}
+
+/* footer-btn */
+.footer-btn {
+    padding: 1rem;
+    background-color: #b85d1c;
+    color: #ddd;
+    border: none;
+}
+
+/* .gallery */
+.gallery {
+/* max-width means the width of the element might be less than 45rem and never exceed the value of 45rem */
+    max-width: 45rem;
+}
+
+/* image-wrapper */
+.image-wrapper {
+    width: 12rem;
+    margin: .4rem;
+/* use overflow: hidden; to keep image width at 45rem when mouse hovers */
+    overflow: hidden;
+}
+
+.footer-image {
+    width: 100%;
+/* use height: 100%; to prevent height from shrinking after mouse hovers*/
+    height: 100%;
+/* prevents image from shrinking after mouse hovers */
+    backface-visibility: hidden;
+/* use transition to expand all of the image for .5s when mouse hovers */
+    transition: all .5s;
+}
+
+.gallery-images {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* expand image when mouse hovers */
+.footer-image:hover {
+    transform: scale(1,3);
+    opacity: .8rem;
+}
+
+/* creater-part */
+.creater-part {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111;
+    padding: 0 4rem;
+}
+
+/* copyright-text */
+.copyright-text {
+    font-size: 1.3rem;
+    color: #aaa;
+}
+
+/* text-right */
+.text-right {
+    font-size: 1.4rem;
+    margin: .5rem;
+    color: tomato;
+}
+
+
+/* text-right span */
+.text-right span {
+   color: gold;
+}
+/* end of footer */
+
+/* media query for responsive design, web to mobile  */
+/* when the .banner-heading is resized on a mobile device it will turn red */
+/* 1400px is the breakpoint */
+/* @media(max-width: 1400px) {
+    .banner-heading {
+        color: red;
+    }
+} */
+
+/* media query for .customers-card-wrapper and footer reponsive when less than 1400px*/
+/* In the inspector use the Response 1214 x 1080 50% */
+@media(max-width: 1400px) {
+    .customers-card-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+/* margin-bottom: 3rem; will only be applied to :first-child in the customer-card div */
+    .customer-card:first-child {
+        margin-bottom: 3rem;
+    }
+
+    /* aligns the gallery and rest of the footer to match with response changes */
+    .main-part {
+        flex-direction: column;
+    }
+
+    /* footer-list responsive*/
+    .footer-list {
+        display: flex;
+    }
+
+    /* .footer-list-item */
+    .footer-list-item {
+        margin-right: 3rem;
+    }
+}
+
+/* media query for About Us section when less than 1200px */
+/* In the inspector use the Response 1214 x 1080 50% */
+@media(max-width: 1200px) {
+    .about-us {
+        flex-direction: column;
+        padding-bottom: 20rem;
+    }
+
+    /* about-us-content */
+    .about-us-content {
+        margin-bottom: 13rem;
+    }
+
+    /* images in about us section responsive */
+    .image {
+        width: 25rem;
+    }
+}
+
+/* media query for Heading section when less than 900px */
+/* In the inspector use the Response 1214 x 1080 50% */
+@media(max-width: 900px) {
+    .banner {
+        text-align: center;
+    }
+
+    .banner-heading {
+        font-size: 4.7rem;
+    }
+
+    .banner-paragraph {
+        font-size: 2.6rem;
+    }
+
+    .banner-btn {
+        width: 16rem;
+        font-size: 1.5rem;
+    }
+}
+
+/* media query for Heading section when less than 750px */
+/* In the inspector use the Response 1214 x 1080 50% */
+@media(max-width: 750px) {
+    .customer-card {
+        flex-direction: column;
+        width: 20rem;
+    }
+/* fits image evenly inside .customer-image-wrapper */
+    .customer-image {
+        margin-left: 29px;
+    }
+
+/* aligns in a block formation aka veritcal line for footer-list */
+    .footer-list{
+        display: block;
+    }
+
+    .creator-part {
+        flex-direction: column;
+/* center footer text responsive at less than 500px */
+        text-align: center;
+    }
+
+    .copyright-text {
+        order: 1;
+    }
+}
+
+
+/* media query for sections when less than 500px */
+/* In the inspector use the Response 378 x 887 100% */
+@media(max-width: 500px) {
+    .navigation {
+        width: 28rem;
+    }
+/* navatigation-searc-input responsive at less than 500px */
+    .navigation-search-input {
+        width: 20rem;
+    }
+
+/* hotel-heading responsive at less than 500px */
+    .hotel-heading {
+        font-size: 2rem;
+        margin: auto 0;
+    }
+
+/* banner responsive at less than 500px when screen is resized vertically*/
+    .banner {
+        height: 100%;
+        margin-top: -10rem;
+    }
+
+/* banner-heading responsive at less than 500px*/
+    .banner-heading {
+        font-size: 3rem;
+    }
+
+ /* banner-paragraph responsive @ less than 500px*/
+    .banner-paragraph {
+        font-size: 2rem;
+    }
+
+/* about-us sectionresponsive at less than 500px */
+    .about-us {
+    padding-bottom: 15rem;
+    }
+
+/* about-us-heading responsive at less than 500px*/
+    .about-us-heading {
+    font-size: 2.5rem;
+    text-align: center;
+    }
+
+
+/* sub-heading responsive at less than 500px */
+    .sub-heading {
+    font-size: 2rem;
+    text-align: center;
+    }
+
+/* about-us-content */ 
+    .about-us-content {
+    padding: 5rem;
+    }
+
+/* remove about-us section responsive at less than 500px image white space on the right */
+    .image {
+    width: 13rem;
+    }
+
+/* common-heading responsive at less than 500px  in rooms in the grand hotel section */
+.common-heading {
+    font-size: 2rem;
+}
+
+/* heading small underline responsive at less than 500px  in rooms in the grand hotel section  */
+    .small-underline {
+        width: 5rem;
+    }
+
+/* big underline responsive at less than 500px  in rooms in the grand hotel section */
+    .big-underline {
+        width: 12rem;
+    }
+
+/* room card heading responsive at less than 500px  decrease font size */
+    .room-card-heading {
+        font-size-adjust: 1.5rem;
+    }
+
+/* room-price responsive at less than 500px  decrease font size */
+/* roomprice responsive at less than 500px  create space between price and button use margin-bottom: 1.5; */
+/* roomprice responsive at less than 500px  align text to the left */
+    .room-price {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        text-align: left;
+    }
+
+/* room-card-btn responsive at less than 500px decrease size with width and padding ( the space around text and border)*/
+    .room-card-btn {
+        width: 12rem;
+        padding: 1rem .5rem;
+        font-size: 1rem;
+    }
+
+/* customer-paragraph responsive at less than 500px */
+    .customers-paragraph {
+        font-size:  1.4rem;
+        width: 80%;
+    }
+
+/* footer main-part responsive at less than 500px */
+    .main-part {
+        padding: 2rem;
+    }
+
+/* .footer-input responsive at less than 500px */
+    .footer-input {
+        width: 12rem;
+    }
+
+ /* make footer images look better by placing them into 2 columns by targeting .image-wrapper using width: 9rem; */
+ .image-wrapper {
+     width: 9rem;
+ }
+}
